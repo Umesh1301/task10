@@ -1,0 +1,79 @@
+<html>
+    <body>
+        <form onsubmit ="saveToLocalStorage(event)">
+            <label>name</label>
+            <input type="text" name="username" required/>
+            <label>emailId</label>
+            <input type="email" name="emailId" required/>
+            <button> submit </button>
+
+        </form>
+
+        <ul id = 'listofusers'>
+            <!-- <li>user 1 </li> -->
+        </ul>
+        <script>
+             function saveToLocalStorage(event){
+        event.preventDefault();
+        const name = event.target.username.value;
+        const email = event.target.emailId.value;
+        // localStorage.setItem('name',name);
+        // localStorage.setItem('email',email);
+        const obj = {
+            name,
+            email
+        }
+        localStorage.setItem(obj.email,JSON.stringify(obj));
+
+        show(obj);
+
+    }
+    function show(user){
+        const parentNode = document.getElementById('listofusers');
+        const childHTML = `<li> ${user.name} - ${user.email}</li>`;
+
+        parentNode.innerHTML = parentNode.innerHTML + childHTML;
+
+    }
+    domconte
+
+        // localStorage.getItem('ravi@2acb.com');
+        // JSON.parse(localStorage.getItem('ravi@2acb.com'));
+        
+        // const obj1 = JSON.parse(localStorage.getItem('ravi@2acb.com'));
+        // obj1.name;
+
+         // name.value ="";
+  
+
+        //  (task 12 algorithm)
+        // 1. when the user click on Submit
+        // 2. you have to create parent node.
+        // 2. add the user details on the DOM
+        // 3.
+
+        
+
+
+       
+        // const obj2 = {
+        //     key1: 'ram',
+        //     key2: 'shyam',
+        //     key3: 'hari'
+        // }
+        // console.log(Object.keys(obj2))
+        // const keyarr = Object.keys(obj2)
+
+        // keyarr.forEach(key => {
+        //     console.assertlog(obj2(key))
+        // })
+
+
+
+
+        </script>
+        
+     
+      
+    </body>
+</html>
