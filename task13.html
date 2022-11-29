@@ -1,0 +1,144 @@
+<html>
+    <head>
+        <!-- <style>
+            form {
+                background-color:blue;
+            }
+
+            input{
+                font-size: 40px;
+                color:green;
+            }
+        </style> -->
+        
+    </head>
+    <body>
+        <form onsubmit ="saveToLocalStorage(event)">
+            <label>name</label>
+            <input type="text" name="username" required/>
+            <label>emailId</label>
+            <input type="email" id="emailId" name="emailId" required/>
+            <button> submit </button>
+
+        </form>
+        <!-- <form>
+            <label> address </label>
+            <input type ="text" name = my name/>
+        </form> -->
+
+        <ul id = 'listofusers'>
+            <!-- <li>user 1 </li> -->
+        </ul>
+        <script>
+             function saveToLocalStorage(event){
+        event.preventDefault();
+        const name = event.target.username.value;
+        const email = event.target.emailId.value;
+        // localStorage.setItem('name',name);
+        // localStorage.setItem('email',email);
+        const obj = {
+            name,
+            email
+        }
+        localStorage.setItem(obj.email,JSON.stringify(obj));
+
+        // for(var i=0;i<localStoragekeys.length;i++){
+        //     const key = localStoragekeys[i]
+        //     const userdetailsString = localStorageobj[key];
+        //     const userDetaildobj = JSON.parse[userDetailsString];
+        //     ShowNewUserOnScreen(userDetalisObj)
+        // }
+
+        showNewUserOnScreen(obj);
+
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+        const localStorageObj = localStorage;
+        const localStoragekeys = Object.keys(localStorage)
+
+        for(var i=0; i<localStoragekeys.length;i++){
+            const key = localStoragekeys[i]
+            const userDetailsString = localStorageObj[key];
+            const userDetalisObj = JSON.parse(userDetailsString)
+            showNewUserOnScreen(userDetalisObj)
+        }
+    })
+    function  showNewUserOnScreen(user){
+        // console.log(localStorage.getItem(user.email))
+        // if(localStorage.getItem(user.email) !== null) {
+        //     removeUserFromScreen(user.email)
+        // }
+        const parentNode = document.getElementById('listofusers');
+        const childHTML = `<li id=${user.email}> ${user.name} - ${user.email} 
+                             <button onclick=deleteUser('${user.email}')>Delete</button ><button onclick=deleteUser('${user.email}')>edit</button>
+                              </li>`
+
+        parentNode.innerHTML = parentNode.innerHTML + childHTML;
+       
+
+    }
+    // deleteuser('abc@gmail.com')
+
+    function deleteUser(emailId){
+        // console.log(emailId);
+        localStorage.removeItem(emailId);
+        removeUserFromScreen(emailId);
+    }
+    function editUser(emailId){
+        // console.log(emailId);
+        localStorage.removeItem(emailId);
+        removeUserFromScreen(emailId);
+    }
+
+    function removeUserFromScreen(emailId) {
+        const parentNode = document.getElementById('listofusers');
+        const childNodeToBeDeleted = document.getElementById(emailId);
+        // if(childNodeToBeDeleted) {
+            parentNode.removeChild(childNodeToBeDeleted)
+        
+    }
+    
+
+        // localStorage.getItem('ravi@2acb.com');
+        // JSON.parse(localStorage.getItem('ravi@2acb.com'));
+        
+        // const obj1 = JSON.parse(localStorage.getItem('ravi@2acb.com'));
+        // obj1.name;
+
+         // name.value ="";
+  
+
+        //  (task 12 algorithm)
+        // 1. when the user click on Submit
+        // 2. you have to create parent node.
+        // 2. add the user details on the DOM
+        // 3.
+
+        
+
+
+       
+        // const obj2 = {
+        //     key1: 'ram',
+        //     key2: 'shyam',
+        //     key3: 'hari'
+        // }
+        // console.log(Object.keys(obj.email))
+        // console.log(localStorage.setItem(obj.email,JSON.stringify(obj)));
+
+        // const keyarr = Object.keys(obj.email)
+
+        // keyarr.forEach(key => {
+        //     console.assertlog(obj(key))
+        // })
+
+
+
+
+        </script>
+        
+     
+      
+    </body>
+</html>
